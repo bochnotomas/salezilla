@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 //routes
-app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/users/', require('./routes/userRoutes'));
 app.use('/', (req, res) => {
   res.status(200).json({ message: 'hello' });
 });

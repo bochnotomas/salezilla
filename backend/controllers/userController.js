@@ -22,7 +22,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  const user = User.create({
+  const user = await User.create({
     username,
     fullname,
     email,
@@ -31,12 +31,8 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
+    console.log(user);
     res.status(201).json({
-      _id: user.id,
-      username: user.username,
-      fullname: user.fullname,
-      email: user.email,
-      phonenumber: user.phonenumber,
       token: generateToken(user.id),
     });
   } else {
@@ -48,21 +44,25 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  const user = User.findOne({ email });
+  if (!email || !password) {
+    res.status(400);
+    throw new Error('Please add all required fields!');
+  }
+
+  const user = await User.findOne({ email });
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).json({
-      _id: user.id,
-      username: user.username,
-      fullname: user.fullname,
-      email: user.email,
-      phonenumber: user.phonenumber,
       token: generateToken(user.id),
     });
   } else {
     res.status(400);
     throw new Error('Invalid user data!');
   }
+});
+
+const getMe = asyncHandler(async (req, res) => {
+  res.status(200).json(req.user);
 });
 
 //gen a JWT
@@ -73,4 +73,5 @@ const generateToken = (id) => {
 module.exports = {
   loginUser,
   registerUser,
+  getMe,
 };
