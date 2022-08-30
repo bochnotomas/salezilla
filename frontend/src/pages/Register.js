@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register, reset } from '../features/auth/authSlice';
 import { toast } from 'react-toastify';
+import Spinner from '../components/Spinner';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -14,8 +15,6 @@ function Register() {
     password: '',
     password2: '',
   });
-
-  const [photo, setPhoto] = useState('');
 
   const { username, fullname, email, phonenumber, password, password2 } =
     formData;
@@ -32,10 +31,6 @@ function Register() {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-  };
-
-  const handlePhoto = (e) => {
-    setPhoto(e.target.files[0]);
   };
 
   const handleSubmit = (e) => {
@@ -65,6 +60,10 @@ function Register() {
     }
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
@@ -123,13 +122,6 @@ function Register() {
               value={password2}
               placeholder='Repeat the password.'
               onChange={onChange}
-            />
-
-            <input
-              type='file'
-              accept='.png, .jpg, .jpeg'
-              name='photo'
-              onChange={handlePhoto}
             />
           </div>
 

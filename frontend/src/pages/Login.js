@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { reset, login } from '../features/auth/authSlice';
+import Spinner from '../components/Spinner';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -31,7 +32,6 @@ function Login() {
       password,
     };
     dispatch(login(userData));
-    toast.success('Login successful!');
   };
 
   useEffect(() => {
@@ -41,10 +41,15 @@ function Login() {
 
     if (user || isSuccess) {
       navigate('/');
+      toast.success('Login successful!');
     }
 
     dispatch(reset());
   }, [user, isSuccess, isError, message, navigate, dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
