@@ -37,6 +37,7 @@ function Login() {
   useEffect(() => {
     if (isError) {
       toast.error(message);
+      dispatch(reset());
     }
 
     if (user || isSuccess) {
@@ -44,7 +45,7 @@ function Login() {
       toast.success('Login successful!');
     }
 
-    dispatch(reset());
+    // dispatch(reset());
   }, [user, isSuccess, isError, message, navigate, dispatch]);
 
   if (isLoading) {

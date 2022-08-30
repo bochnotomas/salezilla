@@ -49,7 +49,7 @@ export const itemsSlice = createSlice({
   name: 'items',
   initialState,
   reducers: {
-    reset: () => initialState,
+    reset: (state) => initialState,
   },
   extraReducers: (builder) => {
     builder
