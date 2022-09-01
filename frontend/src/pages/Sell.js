@@ -54,6 +54,13 @@ function Sell() {
     return <Spinner></Spinner>;
   }
 
+  const formatDate = (date) => {
+    var myDate = new Date(date);
+    const day = myDate.toLocaleDateString('en-US');
+    const time = myDate.toLocaleString().split(',')[1].trim().substring(0, 4);
+    return `${time} ${day}`;
+  };
+
   return (
     <>
       <section>
@@ -91,20 +98,17 @@ function Sell() {
           <button type='submit'>Submit</button>
         </form>
       </section>
-      <section>
-        <h3>Previously created items by {user.username}:</h3>
-        {items.map((item) => (
-          <ul key={item._id}>
-            <li>{item.itemname}</li>
-            <li>{item.description}</li>
-            <img
-              src={`./images/${item.photo}`}
-              alt=''
-              style={{ width: '100px', height: 'auto' }}
-            />
-          </ul>
-        ))}
-      </section>
+      {user && (
+        <section>
+          <h3>Previously created items by {user.username}:</h3>
+          {items.map((item) => (
+            <ul key={item._id}>
+              <li>{item.itemname}</li>
+              <li>{formatDate(item.createdAt)}</li>
+            </ul>
+          ))}
+        </section>
+      )}
     </>
   );
 }

@@ -6,9 +6,13 @@ const { protect } = require('../middleware/authMiddleware');
 const {
   createItem,
   getItemsForUser,
+  getItems,
 } = require('../controllers/itemController');
 
 router.get('/getItemsForUser', protect, getItemsForUser);
-router.post('/', protect, upload.single('photo'), createItem);
+router
+  .route('/')
+  .get(getItems)
+  .post(protect, upload.single('photo'), createItem);
 
 module.exports = router;

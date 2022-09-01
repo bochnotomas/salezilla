@@ -67,6 +67,20 @@ const getMe = asyncHandler(async (req, res) => {
   res.status(200).json(req.user);
 });
 
+const getUsersName = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+  const user = await User.findOne({ _id: id });
+
+  if (user) {
+    res.status(200).json({ username: user.username });
+  } else {
+    res.status(400);
+    throw new Error('User does not exists!');
+  }
+});
+
 //gen a JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
@@ -76,4 +90,5 @@ module.exports = {
   loginUser,
   registerUser,
   getMe,
+  getUsersName,
 };

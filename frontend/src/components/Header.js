@@ -7,12 +7,15 @@ import { reset, logout } from '../features/auth/authSlice';
 function Header() {
   const { user } = useSelector((state) => state.auth);
 
+  const [open, setOpen] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogOut = () => {
     dispatch(logout());
     dispatch(reset());
+    setOpen(!open);
     navigate('/');
   };
 
@@ -32,9 +35,31 @@ function Header() {
             <Link to='/sell'>Sell</Link>
           </li>
           {user ? (
-            <li>
-              <button onClick={handleLogOut}>Log out</button>
-            </li>
+            <>
+              <img
+                src='./images/profile_pic_placeholder.jpg'
+                alt=''
+                onClick={() => setOpen(!open)}
+                style={{ cursor: 'pointer' }}
+              />
+              {open ? (
+                <ul>
+                  <li>
+                    <Link to='/myitems' onClick={() => setOpen(!open)}>
+                      My items
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/settings' onClick={() => setOpen(!open)}>
+                      Settings
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogOut}>Log out</button>
+                  </li>
+                </ul>
+              ) : null}
+            </>
           ) : (
             <li>
               <Link to='/register'>Sign Up</Link>

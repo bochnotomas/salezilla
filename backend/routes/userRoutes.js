@@ -7,10 +7,12 @@ const {
   loginUser,
   registerUser,
   getMe,
+  getUsersName,
 } = require('../controllers/userController');
 
 router.post('/', registerUser);
 router.post('/login', loginUser);
 router.get('/getme', protect, getMe);
+router.get('/:id', getUsersName);
 
 module.exports = router;

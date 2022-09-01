@@ -35,7 +35,14 @@ const getItemsForUser = asyncHandler(async (req, res) => {
   res.status(200).json(items);
 });
 
+const getItems = asyncHandler(async (req, res) => {
+  const items = await Item.find();
+
+  res.status(200).json(items);
+});
+
 module.exports = {
   createItem,
   getItemsForUser,
+  getItems,
 };
