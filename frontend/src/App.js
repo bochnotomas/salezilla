@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import Sell from './pages/Sell';
 import MyItems from './pages/MyItems';
 import Settings from './pages/Settings';
+import Item from './pages/Item';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path='/register' element={<Register />}></Route>
             <Route path='/myitems' element={<MyItems />}></Route>
             <Route path='/settings' element={<Settings />}></Route>
+            <Route path='/item/:id' element={<Item />}></Route>
           </Routes>
         </div>
       </Router>

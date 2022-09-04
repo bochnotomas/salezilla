@@ -1,4 +1,5 @@
 const Item = require('../models/itemModel');
+const User = require('../models/userModel');
 const asyncHandler = require('express-async-handler');
 
 const createItem = asyncHandler(async (req, res) => {
@@ -40,6 +41,32 @@ const getItemsForUser = asyncHandler(async (req, res) => {
   res.status(200).json(items);
 });
 
+const getItemsData = asyncHandler(async (req, res) => {
+  const item = await Item.findById(req.params.id);
+
+  if (!item) {
+    res.status(400);
+    throw new Error('Item does not exist!');
+  }
+
+  const user = await User.findById(item.user);
+
+  if (!user) {
+    res.status(400);
+    throw new Error('Item does not have a seller or account was deleted.');
+  }
+
+  const response = {
+    item,
+    user: {
+      phonenumber: user.phonenumber,
+      email: user.email,
+    },
+  };
+
+  res.status(200).json(response);
+});
+
 const getItems = asyncHandler(async (req, res) => {
   const items = await Item.find();
 
@@ -50,4 +77,5 @@ module.exports = {
   createItem,
   getItemsForUser,
   getItems,
+  getItemsData,
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Spinner from '../components/Spinner';
+import { Link } from 'react-router-dom';
 
 const API_URL_ITEMS = '/api/items/';
 const API_URL_USERS = '/api/users/';
@@ -53,6 +54,9 @@ function Home() {
                 </li>
                 <li>{item.createdAt}</li>
                 <li>@{item.username}</li>
+                <li>
+                  <Link to={`/item/${item._id}`}>More info</Link>
+                </li>
               </ul>
             </div>
           ))}

@@ -7,9 +7,11 @@ const {
   createItem,
   getItemsForUser,
   getItems,
+  getItemsData,
 } = require('../controllers/itemController');
 
 router.get('/getItemsForUser', protect, getItemsForUser);
+router.get('/:id', getItemsData);
 router
   .route('/')
   .get(getItems)
