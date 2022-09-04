@@ -31,10 +31,12 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    console.log(user);
     res.status(201).json({
       token: generateToken(user.id),
       username,
+      fullname,
+      email,
+      phonenumber,
     });
   } else {
     res.status(400);
@@ -56,6 +58,10 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(200).json({
       token: generateToken(user.id),
       username: user.username,
+      fullname: user.fullname,
+      email: user.email,
+      phonenumber: user.phonenumber,
+      photo: user?.photo,
     });
   } else {
     res.status(400);
@@ -69,7 +75,6 @@ const getMe = asyncHandler(async (req, res) => {
 
 const getUsersName = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  console.log(id);
 
   const user = await User.findOne({ _id: id });
 
@@ -79,6 +84,27 @@ const getUsersName = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('User does not exists!');
   }
+});
+
+const updateProfilePicture = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.status(400);
+    throw new Error('User not authorized!');
+  }
+
+  if (!req.file || !req.file.filename) {
+    res.status(400);
+    throw new Error('Image was not found!');
+  }
+
+  const photo = req.file.filename;
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.id,
+    { photo: photo },
+    { new: true }
+  );
+
+  res.status(200).json(photo);
 });
 
 //gen a JWT
@@ -91,4 +117,5 @@ module.exports = {
   registerUser,
   getMe,
   getUsersName,
+  updateProfilePicture,
 };

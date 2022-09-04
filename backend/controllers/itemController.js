@@ -2,7 +2,12 @@ const Item = require('../models/itemModel');
 const asyncHandler = require('express-async-handler');
 
 const createItem = asyncHandler(async (req, res) => {
-  if (!req.body.itemname || !req.body.description || !req.file.filename) {
+  if (
+    !req.body.itemname ||
+    !req.body.description ||
+    !req.file ||
+    !req.file.filename
+  ) {
     res.status(400);
     throw new Error('Please add all required fields!');
   }

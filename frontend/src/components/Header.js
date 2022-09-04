@@ -36,12 +36,22 @@ function Header() {
           </li>
           {user ? (
             <>
-              <img
-                src='./images/profile_pic_placeholder.jpg'
-                alt=''
-                onClick={() => setOpen(!open)}
-                style={{ cursor: 'pointer' }}
-              />
+              {user.photo ? (
+                <img
+                  src={`./images/${user.photo}`}
+                  alt=''
+                  onClick={() => setOpen(!open)}
+                  style={{ cursor: 'pointer' }}
+                />
+              ) : (
+                <img
+                  src='./images/profile_pic_placeholder.jpg'
+                  alt=''
+                  onClick={() => setOpen(!open)}
+                  style={{ cursor: 'pointer' }}
+                />
+              )}
+
               {open ? (
                 <ul>
                   <li>

@@ -24,6 +24,22 @@ const login = async (userData) => {
   return response.data;
 };
 
+const updatePfp = async (data, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.post(API_URL + 'updatepfp', data, config);
+
+  if (response.data) {
+    console.log(response);
+  }
+
+  return response.data;
+};
+
 const logout = () => {
   localStorage.removeItem('user');
 };
@@ -32,6 +48,7 @@ const authService = {
   register,
   login,
   logout,
+  updatePfp,
 };
 
 export default authService;
