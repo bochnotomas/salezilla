@@ -70,9 +70,6 @@ const getItemsData = asyncHandler(async (req, res) => {
 const sellAnItem = asyncHandler(async (req, res) => {
   const item = await Item.findById(req.body.id);
 
-  console.log(item);
-  console.log(req.user);
-
   if (!req.user._id.equals(item.user)) {
     res.status(400);
     throw new Error('This item does not belong to this user!');
