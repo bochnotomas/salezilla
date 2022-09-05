@@ -67,6 +67,24 @@ const getItemsData = asyncHandler(async (req, res) => {
   res.status(200).json(response);
 });
 
+const sellAnItem = asyncHandler(async (req, res) => {
+  const item = await Item.findById(req.body.id);
+
+  console.log(item);
+  console.log(req.user);
+
+  if (!req.user._id.equals(item.user)) {
+    res.status(400);
+    throw new Error('This item does not belong to this user!');
+  }
+
+  const updatedItem = await Item.findByIdAndUpdate(req.body.id, {
+    isSold: !item.isSold,
+  });
+
+  res.status(200).json(updatedItem);
+});
+
 const getItems = asyncHandler(async (req, res) => {
   const items = await Item.find();
 
@@ -78,4 +96,5 @@ module.exports = {
   getItemsForUser,
   getItems,
   getItemsData,
+  sellAnItem,
 };

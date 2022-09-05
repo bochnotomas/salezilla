@@ -37,6 +37,7 @@ function Item() {
     <>
       <section>
         <h3>Item info:</h3>
+        {item.isSold ? <p>this item is sold</p> : null}
         <img
           src={`../images/${item.photo}`}
           alt='whatever'

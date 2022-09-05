@@ -19,6 +19,10 @@ const itemSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
+    isSold: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

@@ -8,6 +8,7 @@ const {
   getItemsForUser,
   getItems,
   getItemsData,
+  sellAnItem,
 } = require('../controllers/itemController');
 
 router.get('/getItemsForUser', protect, getItemsForUser);
@@ -16,5 +17,6 @@ router
   .route('/')
   .get(getItems)
   .post(protect, upload.single('photo'), createItem);
+router.put('/sell', protect, sellAnItem);
 
 module.exports = router;
