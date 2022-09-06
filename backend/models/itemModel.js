@@ -19,6 +19,18 @@ const itemSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
+    price: {
+      type: Number,
+      required: [true, 'Please add a price.'],
+    },
+    category: {
+      type: String,
+      required: [true, 'Please add a category of an item.'],
+    },
+    brand: {
+      type: String,
+      required: [true, 'Please add a brand of an item.'],
+    },
     isSold: {
       type: Boolean,
       default: false,

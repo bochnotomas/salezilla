@@ -9,6 +9,9 @@ function Sell() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [photo, setPhoto] = useState('');
+  const [category, setCategory] = useState('');
+  const [brand, setBrand] = useState('');
+  const [price, setPrice] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,6 +27,9 @@ function Sell() {
     const formData = new FormData();
     formData.append('itemname', name);
     formData.append('description', description);
+    formData.append('price', price);
+    formData.append('category', category);
+    formData.append('brand', brand);
     formData.append('photo', photo);
 
     dispatch(createItem(formData));
@@ -77,7 +83,7 @@ function Sell() {
             id='name'
             name='name'
             value={name}
-            placeholder='Enter your username.'
+            placeholder='Enter products title.'
             onChange={(e) => setName(e.target.value)}
           />
           <textarea
@@ -85,9 +91,55 @@ function Sell() {
             id='description'
             cols='30'
             rows='10'
+            placeholder='Enter products description.'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
+
+          <input
+            type='text'
+            id='price'
+            name='price'
+            value={price}
+            placeholder='Enter the price.'
+            onChange={(e) => setPrice(e.target.value)}
+          />
+
+          <label>
+            Pick the category:
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value='technology'>Technology</option>
+              <option value='luxury'>Luxury</option>
+              <option value='automotive'>Automotive</option>
+              <option value='apparel'>Apparel</option>
+              <option value='goods'>Packaged goods</option>
+            </select>
+          </label>
+
+          <label>
+            Pick the brand:
+            <select value={brand} onChange={(e) => setBrand(e.target.value)}>
+              <option value='apple'>Apple</option>
+              <option value='google'>Google</option>
+              <option value='google'>Nikon</option>
+              <option value='louis_vuitton'>Louis Vuitton</option>
+              <option value='gucci'>Gucci</option>
+              <option value='dior'>Dior</option>
+              <option value='audi'>Audi</option>
+              <option value='ford'>Ford</option>
+              <option value='toyota'>Toyota</option>
+              <option value='nike'>Nike</option>
+              <option value='adidas'>Adidas</option>
+              <option value='puma'>Puma</option>
+              <option value='loreal'>L'Oréal</option>
+              <option value='nivea'>Nivea</option>
+              <option value='dove'>Dove</option>
+            </select>
+          </label>
+
           <input
             type='file'
             accept='.png, .jpg, .jpeg'

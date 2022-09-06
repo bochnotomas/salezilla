@@ -15,8 +15,6 @@ function MyItems() {
     if (user) {
       dispatch(getItems());
     }
-
-    console.log('now');
   }, [isLoading]);
 
   const sellAnItem = async (id) => {

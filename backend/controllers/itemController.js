@@ -6,6 +6,9 @@ const createItem = asyncHandler(async (req, res) => {
   if (
     !req.body.itemname ||
     !req.body.description ||
+    !req.body.price ||
+    !req.body.category ||
+    !req.body.brand ||
     !req.file ||
     !req.file.filename
   ) {
@@ -13,13 +16,16 @@ const createItem = asyncHandler(async (req, res) => {
     throw new Error('Please add all required fields!');
   }
 
-  const { itemname, description } = req.body;
+  const { itemname, description, price, brand, category } = req.body;
   const photo = req.file.filename;
 
   const item = await Item.create({
     itemname,
     description,
     photo,
+    price,
+    brand,
+    category,
     user: req.user.id,
   });
 
@@ -83,9 +89,20 @@ const sellAnItem = asyncHandler(async (req, res) => {
 });
 
 const getItems = asyncHandler(async (req, res) => {
-  const items = await Item.find();
-
-  res.status(200).json(items);
+  const { category, brand } = req.query;
+  if (category && !brand) {
+    const items = await Item.find({ category });
+    res.status(200).json(items);
+  } else if (brand && !category) {
+    const items = await Item.find({ brand });
+    res.status(200).json(items);
+  } else if (brand && category) {
+    const items = await Item.find({ brand, category });
+    res.status(200).json(items);
+  } else {
+    const items = await Item.find();
+    res.status(200).json(items);
+  }
 });
 
 module.exports = {

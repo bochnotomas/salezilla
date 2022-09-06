@@ -46,6 +46,7 @@ function Item() {
         <ul>
           <li>{item.itemname}</li>
           <li>{item.description}</li>
+          <li>{item.price}</li>
         </ul>
 
         <h3>Sellers info:</h3>
