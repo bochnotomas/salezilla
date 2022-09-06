@@ -89,6 +89,8 @@ const sellAnItem = asyncHandler(async (req, res) => {
 });
 
 const getItems = asyncHandler(async (req, res) => {
+  console.log(req.query);
+
   const { category, brand } = req.query;
   if (category && !brand) {
     const items = await Item.find({ category });

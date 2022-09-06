@@ -9,8 +9,8 @@ function Sell() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [photo, setPhoto] = useState('');
-  const [category, setCategory] = useState('');
-  const [brand, setBrand] = useState('');
+  const [category, setCategory] = useState('technology');
+  const [brand, setBrand] = useState('apple');
   const [price, setPrice] = useState('');
 
   const dispatch = useDispatch();
