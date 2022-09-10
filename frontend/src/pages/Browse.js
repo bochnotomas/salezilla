@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Spinner from '../components/Spinner';
+import Items from '../components/Items';
+import Pagination from '../components/Pagination';
 
 const API_URL_ITEMS = '/api/items/';
 
@@ -10,21 +12,14 @@ function Browse() {
   const [brand, setBrand] = useState('');
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(3);
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(API_URL_ITEMS, {
-        params: { brand, category },
-      });
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
-      console.log(response.data);
-      setItems(response.data);
-    } catch (error) {
-      toast.error(error);
-    }
-    setIsLoading(false);
-  };
+  const paginate = (number) => setCurrentPage(number);
 
   const handleClick = () => {
     setBrand('');
@@ -32,6 +27,20 @@ function Browse() {
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(API_URL_ITEMS, {
+          params: { brand, category },
+        });
+
+        setItems(response.data);
+      } catch (error) {
+        toast.error(error);
+      }
+      setIsLoading(false);
+    };
+
     fetchData();
   }, [brand, category]);
 
@@ -82,13 +91,12 @@ function Browse() {
         </div>
       </header>
       <main>
-        {items
-          ? items.map((item) => (
-              <ul key={item._id}>
-                <li>{item.itemname}</li>
-              </ul>
-            ))
-          : null}
+        <Items items={currentItems} />
+        <Pagination
+          itemsPerPage={itemsPerPage}
+          totalItems={items.length}
+          paginate={paginate}
+        />
       </main>
     </div>
   );

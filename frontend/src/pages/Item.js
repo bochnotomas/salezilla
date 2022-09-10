@@ -32,7 +32,7 @@ function Item() {
   if (isLoading) {
     return <Spinner></Spinner>;
   }
-  console.log(item, user);
+
   return (
     <>
       <section>
