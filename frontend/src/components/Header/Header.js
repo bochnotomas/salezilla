@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { reset, logout } from '../features/auth/authSlice';
+import { reset, logout } from './../../features/auth/authSlice';
 
 function Header() {
   const { user } = useSelector((state) => state.auth);

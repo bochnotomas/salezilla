@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updatePfp, reset } from '../features/auth/authSlice';
+import { updatePfp, reset } from '../../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../components/Spinner';
+import Spinner from '../../components/Spinner/Spinner';
 import { toast } from 'react-toastify';
 
 function Settings() {

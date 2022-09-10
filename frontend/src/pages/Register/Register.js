@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { register, reset } from '../features/auth/authSlice';
+import { register, reset } from '../../features/auth/authSlice';
 import { toast } from 'react-toastify';
-import Spinner from '../components/Spinner';
+import Spinner from '../../components/Spinner/Spinner';
 
 function Register() {
   const [formData, setFormData] = useState({

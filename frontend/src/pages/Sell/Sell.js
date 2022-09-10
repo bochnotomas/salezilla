@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createItem, getItems, reset } from '../features/items/itemsSlice';
-import Spinner from '../components/Spinner';
+import { createItem, getItems, reset } from '../../features/items/itemsSlice';
+import Spinner from '../../components/Spinner/Spinner';
 import { toast } from 'react-toastify';
 
 function Sell() {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Spinner from '../components/Spinner';
-import Items from '../components/Items';
-import Pagination from '../components/Pagination';
+import Spinner from '../../components/Spinner/Spinner';
+import Items from '../../components/Items/Items';
+import Pagination from '../../components/Pagination/Pagination';
 
 const API_URL_ITEMS = '/api/items/';
 

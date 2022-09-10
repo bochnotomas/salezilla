@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Spinner from '../components/Spinner';
+import Spinner from '../../components/Spinner/Spinner';
 import { Link } from 'react-router-dom';
 
 const API_URL_ITEMS = '/api/items/';

@@ -2,15 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Header from './components/Header';
-import Browse from './pages/Browse';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Sell from './pages/Sell';
-import MyItems from './pages/MyItems';
-import Settings from './pages/Settings';
-import Item from './pages/Item';
+import Header from './components/Header/Header';
+import Browse from './pages/Browse/Browse';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Sell from './pages/Sell/Sell';
+import MyItems from './pages/MyItems/MyItems';
+import Settings from './pages/Settings/Settings';
+import Item from './pages/Item/Item';
 
 function App() {
   return (

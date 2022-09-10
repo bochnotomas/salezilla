@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getItems } from '../features/items/itemsSlice';
+import { getItems } from '../../features/items/itemsSlice';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Spinner from '../components/Spinner';
+import Spinner from '../../components/Spinner/Spinner';
 
 function MyItems() {
   const { user } = useSelector((state) => state.auth);
