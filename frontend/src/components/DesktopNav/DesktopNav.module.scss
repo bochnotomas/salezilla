@@ -1,0 +1,96 @@
+@use '../../styles/variables' as v;
+
+.header_content {
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 100;
+
+  &_nav {
+    display: flex;
+    flex-direction: row;
+    background: transparent;
+    width: auto;
+    height: 100%;
+    position: static;
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 0;
+      position: relative;
+
+      li {
+        text-decoration: none;
+        padding: 1rem 2rem;
+        transition: 0.3s ease-all;
+        border-radius: 50%;
+      }
+
+      li#sell_button {
+        background-color: v.$button-color;
+        border-radius: 10px;
+        padding: 0rem 2rem;
+        height: 30px;
+        a {
+          color: white;
+        }
+      }
+
+      li#sign_up_button {
+        background-color: v.$primary-color;
+        border-radius: 10px;
+        padding: 0rem 1.5rem;
+        margin-left: 1rem;
+        height: 30px;
+        a {
+          color: white;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: v.$font-color;
+      }
+
+      img {
+        width: 55px;
+        border-radius: 15px;
+        margin-left: 1rem;
+      }
+
+      ul {
+        width: 145px;
+        border-radius: 15px;
+        border: 0.5px solid black;
+        position: absolute;
+        top: 80px;
+        right: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        li {
+          border-radius: 0;
+          padding: 1rem 1.25rem;
+        }
+        li:not(:last-child) {
+          border-bottom: 0.5px solid black;
+        }
+
+        button {
+          border: none;
+          background-color: #fff;
+          font-size: 22px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
