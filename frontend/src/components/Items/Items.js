@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Items.module.scss';
 import { Link } from 'react-router-dom';
 
-function Items({ items }) {
+function Items({ items, isHomePage }) {
   return (
     <div className={styles.container_dashboard_section}>
       <h3>Dashboard</h3>
@@ -22,9 +22,11 @@ function Items({ items }) {
             </div>
           ))}
       </div>
-      <Link id={styles.dashboard_see_more} to='/browse'>
-        See more
-      </Link>
+      {isHomePage ? (
+        <Link id={styles.dashboard_see_more} to='/browse'>
+          See more
+        </Link>
+      ) : null}
     </div>
   );
 }

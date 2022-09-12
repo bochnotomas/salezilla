@@ -71,7 +71,7 @@ export const itemsSlice = createSlice({
       })
       .addCase(getItems.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.isSuccess = false;
         state.items = action.payload;
       })
       .addCase(getItems.rejected, (state, action) => {

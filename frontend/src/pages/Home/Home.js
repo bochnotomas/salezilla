@@ -47,7 +47,7 @@ function Home() {
       <HeroSection />
       <Categories />
       <Brands />
-      <Items items={items} />
+      <Items items={items.slice(0, 12)} isHomePage={true} />
       <Newsletter />
       <Footer />
     </div>

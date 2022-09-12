@@ -1,0 +1,121 @@
+@use '../../styles/variables' as v;
+
+.container {
+  padding-top: 100px;
+
+  .container_form {
+    margin-top: 100px;
+    margin: 100px 3em 0 3em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    .form_left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &_content {
+        display: flex;
+        flex-direction: column;
+
+        img {
+          max-width: 480px;
+          height: 480px;
+          border: 0.5px solid black;
+        }
+
+        .file_button {
+          margin-top: 2em;
+          color: transparent;
+        }
+        .file_button::-webkit-file-upload-button {
+          visibility: hidden;
+        }
+
+        .file_button::before {
+          content: 'Upload';
+          color: #fff;
+          display: inline-block;
+          background: v.$primary-color;
+          border: none;
+          border-radius: 25px;
+          padding: 8px 15px;
+          outline: none;
+          font-weight: 400;
+
+          -webkit-user-select: none;
+          cursor: pointer;
+        }
+        .file_button:hover::before {
+          border: none;
+        }
+        .file_button:active {
+          outline: 0;
+        }
+        .file_button:active::before {
+          background: none;
+        }
+      }
+    }
+
+    .form_right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 700px;
+
+      .input_field {
+        border-bottom: 1px solid black;
+        line-height: 2em;
+
+        input {
+          height: 100%;
+          width: 100%;
+          border: none;
+          outline: none;
+          font-size: 20px;
+        }
+
+        label {
+          font-size: 20px;
+        }
+
+        select {
+          border: none;
+          width: 100%;
+          font-size: 20px;
+          outline: none;
+        }
+
+        textarea {
+          border: none;
+          outline: none;
+          width: 100%;
+          font-size: 20px;
+          resize: none;
+          max-height: 120px;
+        }
+      }
+
+      .button_field {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        button {
+          background-color: v.$button-color;
+          border: none;
+          color: #fff;
+          font-size: 20px;
+          border-radius: 25px;
+          height: 40px;
+          width: 6.25em;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

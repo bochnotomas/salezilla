@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getItems } from '../../features/items/itemsSlice';
+import { getItems, reset } from '../../features/items/itemsSlice';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 function MyItems() {
   const { user } = useSelector((state) => state.auth);
-  const { items } = useSelector((state) => state.items);
+  const { items, isError, message } = useSelector((state) => state.items);
   const [isLoading, setIsLoading] = useState();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
-      dispatch(getItems());
+    if (!user) {
+      navigate('/register');
     }
-  }, [isLoading]);
+
+    dispatch(getItems());
+
+    return () => {
+      dispatch(reset());
+    };
+  }, [user, navigate, isError, message, dispatch]);
 
   const sellAnItem = async (id) => {
     setIsLoading(true);

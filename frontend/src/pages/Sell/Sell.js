@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createItem, getItems, reset } from '../../features/items/itemsSlice';
+import { createItem, reset } from '../../features/items/itemsSlice';
 import Spinner from '../../components/Spinner/Spinner';
 import { toast } from 'react-toastify';
+import styles from './Sell.module.scss';
 
 function Sell() {
   const [name, setName] = useState('');
@@ -17,7 +18,7 @@ function Sell() {
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.auth);
-  const { items, isLoading, isSuccess, isError, message } = useSelector(
+  const { isLoading, isSuccess, isError, message } = useSelector(
     (state) => state.items
   );
 
@@ -33,135 +34,141 @@ function Sell() {
     formData.append('photo', photo);
 
     dispatch(createItem(formData));
-    if (isSuccess) {
-      toast.success('Item added successfully!');
-    }
   };
 
   useEffect(() => {
-    if (user) {
-      dispatch(getItems());
+    if (!user) {
+      navigate('/register');
     }
 
     if (isError) {
       toast.error(message);
     }
 
-    if (!user) {
-      navigate('/register');
+    if (isSuccess) {
+      toast.success('Item added successfully!');
+      navigate('/myitems');
     }
 
     return () => {
       dispatch(reset());
     };
-  }, [user, navigate, isError, message, dispatch]);
+  }, [user, navigate, isSuccess, isError, message, dispatch]);
 
   if (isLoading) {
     return <Spinner></Spinner>;
   }
 
-  const formatDate = (date) => {
-    var myDate = new Date(date);
-    const day = myDate.toLocaleDateString('en-US');
-    const time = myDate.toLocaleString().split(',')[1].trim().substring(0, 4);
-    return `${time} ${day}`;
-  };
+  // const formatDate = (date) => {
+  //   var myDate = new Date(date);
+  //   const day = myDate.toLocaleDateString('en-US');
+  //   const time = myDate.toLocaleString().split(',')[1].trim().substring(0, 4);
+  //   return `${time} ${day}`;
+  // };
 
   return (
-    <>
-      <section>
-        <h3>Sell an item:</h3>
-        <p>
-          Fill out the required fields to add info about an item you want to
-          sell.
-        </p>
-      </section>
-      <section>
-        <form encType='multipart/form-data' onSubmit={handleSubmit}>
-          <input
-            type='text'
-            id='name'
-            name='name'
-            value={name}
-            placeholder='Enter products title.'
-            onChange={(e) => setName(e.target.value)}
-          />
-          <textarea
-            name='description'
-            id='description'
-            cols='30'
-            rows='10'
-            placeholder='Enter products description.'
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+    <div className={styles.container}>
+      <form
+        encType='multipart/form-data'
+        onSubmit={handleSubmit}
+        className={styles.container_form}
+      >
+        <div className={styles.form_left}>
+          <div className={styles.form_left_content}>
+            {photo ? (
+              <img src={URL.createObjectURL(photo)} alt='uploaded_pic' />
+            ) : (
+              <img src={`./images/itempic_placeholder.jpg`} alt='placeholder' />
+            )}
 
-          <input
-            type='text'
-            id='price'
-            name='price'
-            value={price}
-            placeholder='Enter the price.'
-            onChange={(e) => setPrice(e.target.value)}
-          />
+            <input
+              type='file'
+              accept='.png, .jpg, .jpeg'
+              name='photo'
+              className={styles.file_button}
+              onChange={(e) => setPhoto(e.target.files[0])}
+            />
+          </div>
+        </div>
 
-          <label>
-            Pick the category:
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value='technology'>Technology</option>
-              <option value='luxury'>Luxury</option>
-              <option value='automotive'>Automotive</option>
-              <option value='apparel'>Apparel</option>
-              <option value='goods'>Packaged goods</option>
-            </select>
-          </label>
+        <div className={styles.form_right}>
+          <div className={styles.input_field}>
+            <input
+              type='text'
+              id='name'
+              name='name'
+              value={name}
+              placeholder='name'
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
 
-          <label>
-            Pick the brand:
-            <select value={brand} onChange={(e) => setBrand(e.target.value)}>
-              <option value='apple'>Apple</option>
-              <option value='google'>Google</option>
-              <option value='google'>Nikon</option>
-              <option value='louis_vuitton'>Louis Vuitton</option>
-              <option value='gucci'>Gucci</option>
-              <option value='dior'>Dior</option>
-              <option value='audi'>Audi</option>
-              <option value='ford'>Ford</option>
-              <option value='toyota'>Toyota</option>
-              <option value='nike'>Nike</option>
-              <option value='adidas'>Adidas</option>
-              <option value='puma'>Puma</option>
-              <option value='loreal'>L'Oréal</option>
-              <option value='nivea'>Nivea</option>
-              <option value='dove'>Dove</option>
-            </select>
-          </label>
+          <div className={styles.input_field}>
+            <input
+              type='text'
+              id='price'
+              name='price'
+              value={price}
+              placeholder='price'
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+          <div className={styles.input_field}>
+            <label>
+              category:
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value='technology'>Technology</option>
+                <option value='luxury'>Luxury</option>
+                <option value='automotive'>Automotive</option>
+                <option value='apparel'>Apparel</option>
+                <option value='goods'>Packaged goods</option>
+              </select>
+            </label>
+          </div>
+          <div className={styles.input_field}>
+            <label>
+              brand:
+              <select value={brand} onChange={(e) => setBrand(e.target.value)}>
+                <option value='apple'>Apple</option>
+                <option value='google'>Google</option>
+                <option value='google'>Nikon</option>
+                <option value='louis_vuitton'>Louis Vuitton</option>
+                <option value='gucci'>Gucci</option>
+                <option value='dior'>Dior</option>
+                <option value='audi'>Audi</option>
+                <option value='ford'>Ford</option>
+                <option value='toyota'>Toyota</option>
+                <option value='nike'>Nike</option>
+                <option value='adidas'>Adidas</option>
+                <option value='puma'>Puma</option>
+                <option value='loreal'>L'Oréal</option>
+                <option value='nivea'>Nivea</option>
+                <option value='dove'>Dove</option>
+              </select>
+            </label>
+          </div>
 
-          <input
-            type='file'
-            accept='.png, .jpg, .jpeg'
-            name='photo'
-            onChange={(e) => setPhoto(e.target.files[0])}
-          />
+          <div className={styles.input_field}>
+            <textarea
+              name='description'
+              id='description'
+              cols='30'
+              rows='10'
+              placeholder='description'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
 
-          <button type='submit'>Submit</button>
-        </form>
-      </section>
-      {user && (
-        <section>
-          <h3>Previously created items by {user.username}:</h3>
-          {items.map((item) => (
-            <ul key={item._id}>
-              <li>{item.itemname}</li>
-              <li>{formatDate(item.createdAt)}</li>
-            </ul>
-          ))}
-        </section>
-      )}
-    </>
+          <div className={styles.button_field}>
+            <button type='submit'>Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }
 
