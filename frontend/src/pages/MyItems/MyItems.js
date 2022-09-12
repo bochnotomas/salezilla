@@ -43,6 +43,7 @@ function MyItems() {
   if (isLoading) {
     return <Spinner></Spinner>;
   }
+
   return (
     <>
       {items.map((item) => (

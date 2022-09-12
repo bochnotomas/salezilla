@@ -4,12 +4,17 @@ import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner/Spinner';
 import Items from '../../components/Items/Items';
 import Pagination from '../../components/Pagination/Pagination';
+import { useLocation } from 'react-router-dom';
 
 const API_URL_ITEMS = '/api/items/';
 
 function Browse() {
-  const [category, setCategory] = useState('');
-  const [brand, setBrand] = useState('');
+  const location = useLocation();
+  const _category = location.state ? location.state._category : null;
+  const _brand = location.state ? location.state._brand : null;
+
+  const [category, setCategory] = useState(_category ? _category : '');
+  const [brand, setBrand] = useState(_brand ? _brand : '');
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,7 +54,7 @@ function Browse() {
   }
 
   return (
-    <div>
+    <div style={{ marginTop: '100px' }}>
       <header>
         <h3>Dashboard:</h3>
         <div>
@@ -64,6 +69,7 @@ function Browse() {
               <option value='automotive'>Automotive</option>
               <option value='apparel'>Apparel</option>
               <option value='goods'>Packaged goods</option>
+              <option value='gardening'>Gardening</option>
             </select>
           </label>
           <label>
@@ -71,7 +77,7 @@ function Browse() {
             <select value={brand} onChange={(e) => setBrand(e.target.value)}>
               <option value='apple'>Apple</option>
               <option value='google'>Google</option>
-              <option value='google'>Nikon</option>
+              <option value='nikon'>Nikon</option>
               <option value='louis_vuitton'>Louis Vuitton</option>
               <option value='gucci'>Gucci</option>
               <option value='dior'>Dior</option>

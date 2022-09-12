@@ -65,6 +65,7 @@
       }
 
       ul {
+        background-color: #fff;
         width: 145px;
         border-radius: 15px;
         border: 0.5px solid black;
@@ -86,7 +87,7 @@
 
         button {
           border: none;
-          background-color: #fff;
+          background-color: transparent;
           font-size: 22px;
           cursor: pointer;
         }

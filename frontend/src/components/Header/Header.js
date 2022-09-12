@@ -56,8 +56,6 @@ function Header() {
     }
   }, [size.width, menuOpen]);
 
-  console.log(isMobile);
-
   return (
     <header className={styles.header}>
       {isMobile ? (

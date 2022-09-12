@@ -16,19 +16,17 @@ function App() {
   return (
     <>
       <Router>
-        <div className='container'>
-          <Header />
-          <Routes>
-            <Route path='/' element={<Home />}></Route>
-            <Route path='/browse' element={<Browse />}></Route>
-            <Route path='/sell' element={<Sell />}></Route>
-            <Route path='/login' element={<Login />}></Route>
-            <Route path='/register' element={<Register />}></Route>
-            <Route path='/myitems' element={<MyItems />}></Route>
-            <Route path='/settings' element={<Settings />}></Route>
-            <Route path='/item/:id' element={<Item />}></Route>
-          </Routes>
-        </div>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/browse' element={<Browse />}></Route>
+          <Route path='/sell' element={<Sell />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='/myitems' element={<MyItems />}></Route>
+          <Route path='/settings' element={<Settings />}></Route>
+          <Route path='/item/:id' element={<Item />}></Route>
+        </Routes>
       </Router>
       <ToastContainer />
     </>
