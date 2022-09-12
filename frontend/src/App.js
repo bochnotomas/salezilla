@@ -10,7 +10,8 @@ import Register from './pages/Register/Register';
 import Sell from './pages/Sell/Sell';
 import MyItems from './pages/MyItems/MyItems';
 import Settings from './pages/Settings/Settings';
-import Item from './pages/Item/Item';
+
+import ItemPage from './pages/ItemPage/ItemPage';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path='/register' element={<Register />}></Route>
           <Route path='/myitems' element={<MyItems />}></Route>
           <Route path='/settings' element={<Settings />}></Route>
-          <Route path='/item/:id' element={<Item />}></Route>
+          <Route path='/item/:id' element={<ItemPage />}></Route>
         </Routes>
       </Router>
       <ToastContainer />

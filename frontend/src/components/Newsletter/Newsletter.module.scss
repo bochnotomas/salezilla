@@ -1,0 +1,50 @@
+@use '../../styles/variables' as v;
+
+.container_newsletter_section {
+  background-color: v.$secondary-color;
+  width: 100%;
+  display: grid;
+  height: 400px;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .search_input_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 10px;
+    width: 65%;
+    margin: 0 auto;
+    height: 50px;
+
+    input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 20px;
+      padding-left: 1rem;
+    }
+
+    button {
+      background-color: v.$button-color;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      border-radius: 25px;
+      height: 40px;
+      width: 6.25em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+}

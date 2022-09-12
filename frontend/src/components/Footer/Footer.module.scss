@@ -1,0 +1,54 @@
+@use '../../styles/variables' as v;
+
+.container_footer {
+  margin: 1em 3em;
+  border-bottom: 2px solid black;
+
+  display: flex;
+  justify-content: space-between;
+  height: 10em;
+
+  .footer_left {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      width: 80px;
+    }
+    span {
+      font-size: 10px;
+    }
+  }
+
+  .footer_right {
+    ul {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-evenly;
+      list-style: none;
+      li {
+        a {
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.container_heel {
+  margin: 1em 3em;
+  display: flex;
+  justify-content: space-between;
+
+  .socials {
+    display: flex;
+    list-style-type: none;
+
+    li {
+      padding-left: 10px;
+      cursor: pointer;
+    }
+  }
+}

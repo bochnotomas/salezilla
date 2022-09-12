@@ -1,0 +1,68 @@
+@use '../../styles/variables' as v;
+
+.container_dashboard_section {
+  width: 100%;
+  padding: 1em 3em;
+
+  h3 {
+    margin-bottom: 1em;
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: 4em;
+    grid-row-gap: 2em;
+    margin-bottom: 2em;
+
+    @include v.breakpoint(md) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .item {
+      background-color: v.$hero-color;
+      border-radius: 5px;
+
+      .item_link {
+        position: relative;
+        border-radius: 5px 5px 0 0;
+        img {
+          width: 100%;
+          border-radius: 5px 5px 0 0;
+        }
+
+        a {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          width: 50px;
+          height: 50px;
+          background-color: v.$button-color;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          color: #fff;
+          font-size: 24px;
+          font-weight: 600;
+        }
+      }
+
+      p {
+        color: v.$primary-color;
+        font-size: 22px;
+        margin: 0 0 10px 10px;
+      }
+    }
+  }
+
+  #dashboard_see_more {
+    background-color: v.$primary-color;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+}

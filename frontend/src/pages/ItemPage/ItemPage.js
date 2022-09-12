@@ -6,7 +6,7 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const API_URL_ITEMS = '/api/items/';
 
-function Item() {
+function ItemPage() {
   const { id } = useParams();
   const [user, setUser] = useState('');
   const [item, setItem] = useState('');
@@ -59,4 +59,4 @@ function Item() {
   );
 }
 
-export default Item;
+export default ItemPage;
