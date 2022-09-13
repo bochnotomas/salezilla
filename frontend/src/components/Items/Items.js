@@ -3,6 +3,16 @@ import styles from './Items.module.scss';
 import { Link } from 'react-router-dom';
 
 function Items({ items, isHomePage }) {
+  if (items.length === 0)
+    return (
+      <div className={styles.container_dashboard_section}>
+        <h3>Dashboard</h3>
+        <div className={styles.items}>
+          <p>Unfortunately, there are no items.</p>
+        </div>
+      </div>
+    );
+
   return (
     <div className={styles.container_dashboard_section}>
       <h3>Dashboard</h3>

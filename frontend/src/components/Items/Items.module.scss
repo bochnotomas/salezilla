@@ -2,7 +2,11 @@
 
 .container_dashboard_section {
   width: 100%;
-  padding: 1em 3em;
+  padding: 1em 1em;
+
+  @include v.breakpoint(lg) {
+    padding: 1em 3em;
+  }
 
   h3 {
     margin-bottom: 1em;

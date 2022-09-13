@@ -1,0 +1,41 @@
+@use '../../styles/variables' as v;
+
+.container {
+  margin-top: 100px;
+
+  .selectors {
+    height: 4em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .selector {
+      border-bottom: 1px solid black;
+      margin-left: 1em;
+      @include v.breakpoint(lg) {
+        margin-left: 3em;
+      }
+      select {
+        border: none;
+        width: 100%;
+        font-size: 20px;
+        outline: none;
+      }
+    }
+
+    button {
+      margin-left: 1em;
+      background-color: v.$button-color;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      border-radius: 25px;
+      height: 40px;
+      width: 6.25em;
+      cursor: pointer;
+      @include v.breakpoint(lg) {
+        margin-left: 3em;
+      }
+    }
+  }
+}

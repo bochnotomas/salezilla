@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Pagination.module.scss';
 
 function Pagination({ itemsPerPage, totalItems, paginate }) {
   const pageNumbers = [];
@@ -8,21 +9,15 @@ function Pagination({ itemsPerPage, totalItems, paginate }) {
   }
 
   return (
-    <nav>
+    <div className={styles.pagination}>
       <ul>
         {pageNumbers.map((number) => (
           <li key={number}>
-            <p
-              onClick={() => paginate(number)}
-              href='!#'
-              style={{ cursor: 'pointer' }}
-            >
-              {number}
-            </p>
+            <p onClick={() => paginate(number)}>{number}</p>
           </li>
         ))}
       </ul>
-    </nav>
+    </div>
   );
 }
 

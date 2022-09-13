@@ -1,0 +1,21 @@
+@use '../../styles/variables' as v;
+
+.pagination {
+  margin-bottom: 1em;
+  ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-end;
+    margin-right: 1em;
+
+    @include v.breakpoint(lg) {
+      margin-right: 3em;
+    }
+
+    li {
+      cursor: pointer;
+      border: 0.5px solid black;
+      padding: 10px;
+    }
+  }
+}
