@@ -10,13 +10,19 @@
 
   .items {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-column-gap: 4em;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1em;
     grid-row-gap: 2em;
     margin-bottom: 2em;
 
     @include v.breakpoint(md) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 2em;
+    }
+
+    @include v.breakpoint(lg) {
       grid-template-columns: repeat(4, 1fr);
+      grid-column-gap: 4em;
     }
 
     .item {
@@ -30,6 +36,7 @@
           width: 100%;
           border-radius: 5px 5px 0 0;
           height: 280px;
+          object-fit: cover;
         }
 
         a {

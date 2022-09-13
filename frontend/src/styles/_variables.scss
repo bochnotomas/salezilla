@@ -13,4 +13,17 @@ $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       @content;
     }
   }
+
+  @if $point == _lg {
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if $point == lg {
+    // 1200px
+    @media (min-width: 75em) {
+      @content;
+    }
+  }
 }

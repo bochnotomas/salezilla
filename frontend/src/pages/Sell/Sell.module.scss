@@ -1,32 +1,42 @@
 @use '../../styles/variables' as v;
 
 .container {
-  padding-top: 100px;
-
-  .container_form {
-    margin-top: 100px;
-    margin: 100px 3em 0 3em;
+  &_form {
+    height: 100%;
+    padding-top: 100px;
+    margin-bottom: 1em;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    @include v.breakpoint(lg) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+      padding-top: 200px;
+    }
 
     .form_left {
       display: flex;
+      flex-direction: row;
       justify-content: center;
-      align-items: center;
 
-      &_content {
+      .form_left_content {
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
 
         img {
-          max-width: 480px;
-          height: 480px;
+          max-height: 300px;
           border: 0.5px solid black;
+          @include v.breakpoint(md) {
+            max-height: 480px;
+          }
         }
 
         .file_button {
-          margin-top: 2em;
           color: transparent;
+          @include v.breakpoint(md) {
+            margin-top: 1em;
+          }
         }
         .file_button::-webkit-file-upload-button {
           visibility: hidden;
@@ -42,8 +52,6 @@
           padding: 8px 15px;
           outline: none;
           font-weight: 400;
-
-          -webkit-user-select: none;
           cursor: pointer;
         }
         .file_button:hover::before {
@@ -61,22 +69,25 @@
     .form_right {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      max-width: 700px;
+      justify-content: flex-start;
+      width: 80%;
+      margin: 0 auto;
 
       .input_field {
+        margin-top: 1em;
         border-bottom: 1px solid black;
+        width: 100%;
         line-height: 2em;
 
-        input {
+        label {
+          font-size: 20px;
+        }
+        input,
+        textarea {
           height: 100%;
           width: 100%;
           border: none;
           outline: none;
-          font-size: 20px;
-        }
-
-        label {
           font-size: 20px;
         }
 
@@ -88,19 +99,17 @@
         }
 
         textarea {
-          border: none;
-          outline: none;
-          width: 100%;
-          font-size: 20px;
           resize: none;
           max-height: 120px;
         }
       }
 
       .button_field {
+        margin-top: 1em;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+        width: 100%;
 
         button {
           background-color: v.$button-color;
@@ -110,12 +119,15 @@
           border-radius: 25px;
           height: 40px;
           width: 6.25em;
-          display: flex;
-          justify-content: center;
-          align-items: center;
           cursor: pointer;
         }
       }
     }
+  }
+
+  @include v.breakpoint(md) {
+  }
+
+  @include v.breakpoint(lg) {
   }
 }
