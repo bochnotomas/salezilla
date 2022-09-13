@@ -1,0 +1,99 @@
+@use '../../styles/variables' as v;
+
+.container {
+  margin-top: 100px;
+
+  .item_info {
+    @include v.breakpoint(lg) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container_left {
+      display: flex;
+      justify-content: center;
+
+      img {
+        max-height: 300px;
+
+        @include v.breakpoint(md) {
+          max-height: 480px;
+        }
+
+        @include v.breakpoint(lg) {
+          max-height: 360px;
+        }
+      }
+    }
+
+    .container_right {
+      margin: 2em;
+
+      @include v.breakpoint(lg) {
+        margin-right: 3em;
+      }
+
+      .name_description {
+        margin-bottom: 2em;
+
+        h3 {
+          margin-bottom: 1em;
+        }
+      }
+
+      .details_wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        .time_price {
+          .time {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            align-items: center;
+            margin-bottom: 16px;
+
+            img {
+              width: 35px;
+            }
+          }
+
+          .price {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 1fr 3fr;
+
+            img {
+              width: 35px;
+            }
+          }
+        }
+
+        .interactions {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+
+          .buy_now {
+            color: #fff;
+            border: none;
+            background-color: v.$button-color;
+            padding: 5px 10px;
+            border-radius: 25px;
+            font-size: 20px;
+            cursor: pointer;
+          }
+
+          .sold {
+            color: #fff;
+            border: none;
+            background-color: red;
+            padding: 5px 10px;
+            border-radius: 25px;
+            font-size: 20px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

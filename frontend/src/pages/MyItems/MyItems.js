@@ -23,7 +23,7 @@ function MyItems() {
     return () => {
       dispatch(reset());
     };
-  }, [user, navigate, isError, message, dispatch]);
+  }, [user, navigate, isError, message, isLoading, dispatch]);
 
   const sellAnItem = async (id) => {
     setIsLoading(true);

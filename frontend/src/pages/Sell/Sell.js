@@ -59,13 +59,6 @@ function Sell() {
     return <Spinner></Spinner>;
   }
 
-  // const formatDate = (date) => {
-  //   var myDate = new Date(date);
-  //   const day = myDate.toLocaleDateString('en-US');
-  //   const time = myDate.toLocaleString().split(',')[1].trim().substring(0, 4);
-  //   return `${time} ${day}`;
-  // };
-
   return (
     <div className={styles.container}>
       <form
