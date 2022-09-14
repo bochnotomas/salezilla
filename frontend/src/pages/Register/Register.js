@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { register, reset } from '../../features/auth/authSlice';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner/Spinner';
+import styles from './Register.module.scss';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -66,30 +67,11 @@ function Register() {
   }
 
   return (
-    <>
-      <section>
-        <h1>Register here</h1>
-      </section>
-      <section>
-        <form onSubmit={handleSubmit}>
-          <div className='form-group'>
-            <input
-              type='text'
-              id='username'
-              name='username'
-              value={username}
-              placeholder='Enter your username.'
-              onChange={onChange}
-            />
-
-            <input
-              type='text'
-              id='fullname'
-              name='fullname'
-              value={fullname}
-              placeholder='Enter your full name.'
-              onChange={onChange}
-            />
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit}>
+        <h3>Register here:</h3>
+        <div className={styles.form_group}>
+          <div className={styles.input_field}>
             <input
               type='email'
               id='email'
@@ -98,14 +80,8 @@ function Register() {
               placeholder='Enter your email.'
               onChange={onChange}
             />
-            <input
-              type='tel'
-              id='phonenumber'
-              name='phonenumber'
-              value={phonenumber}
-              placeholder='Enter your phonenumber.'
-              onChange={onChange}
-            />
+          </div>
+          <div className={styles.input_field}>
             <input
               type='password'
               id='password'
@@ -114,7 +90,8 @@ function Register() {
               placeholder='Enter your password.'
               onChange={onChange}
             />
-
+          </div>
+          <div className={styles.input_field}>
             <input
               type='password'
               id='password2'
@@ -124,16 +101,49 @@ function Register() {
               onChange={onChange}
             />
           </div>
-
-          <button type='submit'>submit</button>
-        </form>
-      </section>
-      <section>
-        <p>
-          Already have an account? Sign in <Link to='/login'>here</Link>
-        </p>
-      </section>
-    </>
+          <div className={styles.input_field}>
+            <input
+              type='text'
+              id='username'
+              name='username'
+              value={username}
+              placeholder='Enter your username.'
+              onChange={onChange}
+            />
+          </div>
+          <div className={styles.input_field}>
+            <input
+              type='text'
+              id='fullname'
+              name='fullname'
+              value={fullname}
+              placeholder='Enter your full name.'
+              onChange={onChange}
+            />
+          </div>
+          <div className={styles.input_field}>
+            <input
+              type='tel'
+              id='phonenumber'
+              name='phonenumber'
+              value={phonenumber}
+              placeholder='Enter your phonenumber.'
+              onChange={onChange}
+            />
+          </div>
+          <div className={styles.interactions}>
+            <div className={styles.form_link}>
+              <p>
+                Already have an account? Sign in <Link to='/login'>here.</Link>
+              </p>
+            </div>
+            <div className={styles.button_field}>
+              <button type='submit'>submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }
 
