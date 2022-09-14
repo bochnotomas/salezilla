@@ -5,13 +5,14 @@
   width: 100%;
 
   form {
-    margin: 0 2em;
+    padding: 0 2em;
+    margin: 0 auto;
     height: 50vh;
     max-width: 500px;
 
-    @include v.breakpoint(lg) {
-      margin: 0 auto;
-    }
+    // @include v.breakpoint(md) {
+    //   margin: 0 auto;
+    // }
 
     .form_group {
       height: 100%;
