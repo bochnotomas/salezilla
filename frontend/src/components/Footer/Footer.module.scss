@@ -1,8 +1,12 @@
 @use '../../styles/variables' as v;
 
 .container_footer {
-  margin: 1em 3em;
+  margin: 1em 1em;
   border-bottom: 2px solid black;
+
+  @include v.breakpoint(md) {
+    margin: 1em 3em;
+  }
 
   display: flex;
   justify-content: space-between;
@@ -38,10 +42,13 @@
 }
 
 .container_heel {
-  margin: 1em 3em;
+  margin: 1em 1em;
   display: flex;
   justify-content: space-between;
 
+  @include v.breakpoint(md) {
+    margin: 1em 3em;
+  }
   .socials {
     display: flex;
     list-style-type: none;

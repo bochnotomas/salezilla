@@ -9,6 +9,8 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
+    margin-bottom: 2em;
+
     .container_left {
       display: flex;
       justify-content: center;
@@ -46,11 +48,14 @@
         justify-content: space-between;
 
         .time_price {
+          div {
+            margin-bottom: 16px;
+          }
+
           .time {
             display: grid;
             grid-template-columns: 1fr 3fr;
             align-items: center;
-            margin-bottom: 16px;
 
             img {
               width: 35px;
@@ -65,6 +70,13 @@
             img {
               width: 35px;
             }
+          }
+
+          .user_email,
+          .phonenumber {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 1fr 3fr;
           }
         }
 
@@ -94,6 +106,14 @@
           }
         }
       }
+    }
+  }
+
+  .user_info {
+    margin: 0 2em;
+
+    div {
+      margin-bottom: 1em;
     }
   }
 }

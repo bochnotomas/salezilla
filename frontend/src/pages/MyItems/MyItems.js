@@ -5,6 +5,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner/Spinner';
 import { useNavigate } from 'react-router-dom';
+import Items from '../../components/Items/Items';
+import styles from './MyItems.module.scss';
 
 function MyItems() {
   const { user } = useSelector((state) => state.auth);
@@ -53,29 +55,9 @@ function MyItems() {
   }
 
   return (
-    <>
-      {items.map((item) => (
-        <div key={item._id}>
-          <ul>
-            <li>{item.itemname}</li>
-            <li>{item.description}</li>
-            {item.isSold ? (
-              <li style={{ color: 'red' }}>THIS ITEM IS SOLD</li>
-            ) : (
-              <button onClick={() => handleClick(item._id)}>
-                Flag as sold
-              </button>
-            )}
-            <img
-              src={`./images/${item.photo}`}
-              alt=''
-              style={{ width: '200px' }}
-            />
-            <li>{item.createdAt}</li>
-          </ul>
-        </div>
-      ))}
-    </>
+    <div className={styles.container}>
+      <Items items={items} isMyItems={true} handleClick={handleClick} />
+    </div>
   );
 }
 

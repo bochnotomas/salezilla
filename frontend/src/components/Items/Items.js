@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Items.module.scss';
 import { Link } from 'react-router-dom';
 
-function Items({ items, isHomePage }) {
+function Items({ items, isHomePage, isMyItems, handleClick }) {
   if (items.length === 0)
     return (
       <div className={styles.container_dashboard_section}>
@@ -15,7 +15,7 @@ function Items({ items, isHomePage }) {
 
   return (
     <div className={styles.container_dashboard_section}>
-      <h3>Dashboard</h3>
+      {isMyItems ? <h3>Your items</h3> : <h3>Dashboard</h3>}
       <div className={styles.items}>
         {items &&
           items.map((item) => (
@@ -28,7 +28,24 @@ function Items({ items, isHomePage }) {
                 />
                 <Link to={`/item/${item._id}`}>i</Link>
               </div>
-              <p>@{item.username}</p>
+              <div className={styles.item_footer}>
+                {isMyItems ? (
+                  <>
+                    {item.isSold ? (
+                      <p>Item sold.</p>
+                    ) : (
+                      <button
+                        className={styles.sell_button}
+                        onClick={() => handleClick(item._id)}
+                      >
+                        Sell
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <p>@{item.username}</p>
+                )}
+              </div>
             </div>
           ))}
       </div>

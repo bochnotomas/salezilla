@@ -62,7 +62,7 @@ function MobileNav({
                       src='./images/profile_pic_placeholder.jpg'
                       alt=''
                       onClick={() => setOpen(!open)}
-                      style={{ width: '75px' }}
+                      style={{ width: '25px' }}
                     />
                   )}
                 </Link>

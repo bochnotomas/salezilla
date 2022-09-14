@@ -27,7 +27,7 @@ function ItemPage() {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   const formatDate = (date) => {
     var myDate = new Date(date);
@@ -57,12 +57,20 @@ function ItemPage() {
               <div className={styles.details_wrapper}>
                 <div className={styles.time_price}>
                   <div className={styles.time}>
-                    <img src='../images/assets/clock.svg' alt='clock' />
+                    <img src='../images/clock.png' alt='clock' />
                     <p>added at {formatDate(item.createdAt)}</p>
                   </div>
                   <div className={styles.price}>
-                    <img src='../images/assets/price.svg' alt='clock' />
+                    <img src='../images/price.png' alt='clock' />
                     <p>{item.price}$</p>
+                  </div>
+                  <div className={styles.user_email}>
+                    <b>User's email: </b>
+                    <p>{user.email}</p>
+                  </div>
+                  <div className={styles.phonenumber}>
+                    <b>User's number: </b>
+                    <p>{user.phonenumber}</p>
                   </div>
                 </div>
                 <div className={styles.interactions}>

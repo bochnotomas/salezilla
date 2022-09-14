@@ -69,6 +69,7 @@ function Browse() {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
+            <option value=''>-</option>
             <option value='technology'>Technology</option>
             <option value='luxury'>Luxury</option>
             <option value='automotive'>Automotive</option>
@@ -80,6 +81,7 @@ function Browse() {
 
         <div className={styles.selector}>
           <select value={brand} onChange={(e) => setBrand(e.target.value)}>
+            <option value=''>-</option>
             <option value='apple'>Apple</option>
             <option value='google'>Google</option>
             <option value='nikon'>Nikon</option>
