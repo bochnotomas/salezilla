@@ -1,0 +1,59 @@
+@use '../../styles/variables' as v;
+
+.container {
+  margin-top: 100px;
+  width: 100%;
+
+  form {
+    margin: 0 2em;
+    height: 50vh;
+    max-width: 500px;
+
+    @include v.breakpoint(lg) {
+      margin: 0 auto;
+    }
+
+    .form_group {
+      height: 100%;
+      display: grid;
+      grid-template-rows: repeat(6, 1fr);
+
+      .input_field {
+        border-bottom: 1px solid black;
+        display: flex;
+        margin-bottom: 1em;
+        input {
+          width: 100%;
+          font-size: 20px;
+          border: none;
+          outline: none;
+          line-height: 100%;
+        }
+      }
+
+      .interactions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .form_link {
+          a {
+            color: v.$primary-color;
+          }
+        }
+
+        .button_field {
+          button {
+            border: none;
+            background-color: v.$button-color;
+            padding: 5px 10px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
