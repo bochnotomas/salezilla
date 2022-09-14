@@ -4,6 +4,7 @@ import { updatePfp, reset } from '../../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner';
 import { toast } from 'react-toastify';
+import styles from './Settings.module.scss';
 
 function Settings() {
   const [photo, setPhoto] = useState('');
@@ -39,41 +40,46 @@ function Settings() {
   }
 
   return (
-    <>
-      <section>
-        <h3>Settings Page:</h3>
-        <div>
-          <ul>
-            <li>{user.username}</li>
-            <li>{user.fullname}</li>
-            <li>{user.email}</li>
-            <li>{user.phonenumber}</li>
-            {user.photo ? (
-              <>
-                <li>{user.photo}</li>
-                <li>
-                  <img src={`./images/${user.photo}`} alt='' />
-                </li>
-              </>
+    <div className={styles.container}>
+      <div className={styles.image_form}>
+        {user.photo ? (
+          <img src={`./images/${user.photo}`} alt='pfp' />
+        ) : (
+          <>
+            {photo ? (
+              <img src={URL.createObjectURL(photo)} alt='uploaded_pic' />
             ) : (
-              <li>No user photo yet</li>
+              <img src='./images/profile_pic_placeholder.jpg' alt='pfp' />
             )}
-          </ul>
-        </div>
-      </section>
-      <section>
+          </>
+        )}
+
         <form encType='multipart/form-data' onSubmit={onSubmit}>
           <input
             type='file'
             accept='.png, .jpg, .jpeg'
             name='photo'
             onChange={(e) => setPhoto(e.target.files[0])}
+            className={styles.file_button}
           />
-
           <button type='submit'>Submit</button>
         </form>
-      </section>
-    </>
+      </div>
+      <div className={styles.user_info_wrapper}>
+        <div className={styles.grid_cell}>
+          <label>Username:</label> <p>{user.username}</p>
+        </div>
+        <div className={styles.grid_cell}>
+          <label>Full name:</label> <p>{user.fullname}</p>
+        </div>
+        <div className={styles.grid_cell}>
+          <label>Email:</label> <p>{user.email}</p>
+        </div>
+        <div className={styles.grid_cell}>
+          <label>Phonenumber:</label> <p>{user.phonenumber}</p>
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -58,6 +58,38 @@
         cursor: pointer;
       }
 
+      .file_button {
+        color: transparent;
+        @include v.breakpoint(md) {
+          margin-top: 1em;
+        }
+      }
+      .file_button::-webkit-file-upload-button {
+        visibility: hidden;
+      }
+
+      .file_button::before {
+        content: 'Upload';
+        color: #fff;
+        display: inline-block;
+        background: v.$primary-color;
+        border: none;
+        border-radius: 25px;
+        padding: 8px 15px;
+        outline: none;
+        font-weight: 400;
+        cursor: pointer;
+      }
+      .file_button:hover::before {
+        border: none;
+      }
+      .file_button:active {
+        outline: 0;
+      }
+      .file_button:active::before {
+        background: none;
+      }
+
       ul {
         list-style: none;
         display: flex;

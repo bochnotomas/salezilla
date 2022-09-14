@@ -1,0 +1,100 @@
+@use '../../styles/variables' as v;
+
+.container {
+  margin-top: 100px;
+
+  @include v.breakpoint(lg) {
+    margin-top: 200px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .image_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0em 2em;
+    margin-bottom: 2em;
+
+    img {
+      max-height: 300px;
+      object-fit: cover;
+      @include v.breakpoint(md) {
+        max-height: 480px;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em;
+
+      button {
+        border: none;
+        background-color: v.$button-color;
+        padding: 5px 10px;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        color: white;
+      }
+
+      .file_button {
+        color: transparent;
+        @include v.breakpoint(md) {
+          margin-top: 1em;
+        }
+      }
+      .file_button::-webkit-file-upload-button {
+        visibility: hidden;
+      }
+
+      .file_button::before {
+        content: 'Upload';
+        color: #fff;
+        display: inline-block;
+        background: v.$primary-color;
+        border: none;
+        border-radius: 25px;
+        padding: 8px 15px;
+        outline: none;
+        font-weight: 400;
+        cursor: pointer;
+      }
+      .file_button:hover::before {
+        border: none;
+      }
+      .file_button:active {
+        outline: 0;
+      }
+      .file_button:active::before {
+        background: none;
+      }
+    }
+  }
+
+  .user_info_wrapper {
+    margin: 0 2em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .grid_cell {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      height: 2em;
+      align-items: center;
+
+      label {
+        font-weight: 600;
+      }
+
+      p {
+        margin-left: auto;
+      }
+    }
+  }
+}
