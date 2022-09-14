@@ -53,6 +53,7 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.findOne({ email });
+  console.log(user);
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).json({
@@ -61,7 +62,7 @@ const loginUser = asyncHandler(async (req, res) => {
       fullname: user.fullname,
       email: user.email,
       phonenumber: user.phonenumber,
-      photo: user?.photo,
+      photo: user.photo,
     });
   } else {
     res.status(400);
@@ -104,7 +105,14 @@ const updateProfilePicture = asyncHandler(async (req, res) => {
     { new: true }
   );
 
-  res.status(200).json(photo);
+  res.status(200).json({
+    token: generateToken(updatedUser.id),
+    username: updatedUser.username,
+    fullname: updatedUser.fullname,
+    email: updatedUser.email,
+    phonenumber: updatedUser.phonenumber,
+    photo: updatedUser.photo,
+  });
 });
 
 //gen a JWT

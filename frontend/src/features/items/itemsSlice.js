@@ -13,7 +13,7 @@ export const createItem = createAsyncThunk(
   'items/create',
   async (itemData, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
+      const { token } = JSON.parse(localStorage.getItem('user'));
       return await itemsService.createItem(itemData, token);
     } catch (error) {
       const message =
@@ -31,7 +31,7 @@ export const getItems = createAsyncThunk(
   'items/getAll',
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
+      const { token } = JSON.parse(localStorage.getItem('user'));
       return await itemsService.getItems(token);
     } catch (error) {
       const message =

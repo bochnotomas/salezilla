@@ -42,12 +42,12 @@ function Settings() {
   return (
     <div className={styles.container}>
       <div className={styles.image_form}>
-        {user.photo ? (
-          <img src={`./images/${user.photo}`} alt='pfp' />
+        {photo ? (
+          <img src={URL.createObjectURL(photo)} alt='uploaded_pic' />
         ) : (
           <>
-            {photo ? (
-              <img src={URL.createObjectURL(photo)} alt='uploaded_pic' />
+            {user.photo ? (
+              <img src={`./images/${user.photo}`} alt='pfp' />
             ) : (
               <img src='./images/profile_pic_placeholder.jpg' alt='pfp' />
             )}

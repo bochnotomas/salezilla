@@ -44,7 +44,8 @@ export const updatePfp = createAsyncThunk(
   'auth/updatePfp',
   async (data, thunkAPI) => {
     try {
-      return await authService.updatePfp(data, user.token);
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      return await authService.updatePfp(data, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -118,7 +119,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.user.photo = action.payload;
+        state.user = action.payload;
       });
   },
 });

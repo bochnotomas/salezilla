@@ -127,7 +127,7 @@ function Sell() {
               <select value={brand} onChange={(e) => setBrand(e.target.value)}>
                 <option value='apple'>Apple</option>
                 <option value='google'>Google</option>
-                <option value='google'>Nikon</option>
+                <option value='nikon'>Nikon</option>
                 <option value='louis_vuitton'>Louis Vuitton</option>
                 <option value='gucci'>Gucci</option>
                 <option value='dior'>Dior</option>
